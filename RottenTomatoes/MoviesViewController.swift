@@ -25,11 +25,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             var object = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSDictionary
         
-            
             self.movies = object["movies"] as [NSDictionary]
+            println("object: \(object)")
+        }
             self.tableView.reloadData()
             
         }
+    
 
     
     override func didReceiveMemoryWarning() {
