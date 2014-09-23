@@ -20,13 +20,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
 
         var url = "http://api.rottentomatoes.com/api/public/v1.0.json?apikey=et5rj7cxytpx9e5faamzxmmv"
+        
         var request = NSURLRequest(URL: NSURL(string: url))
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             var object = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSDictionary
+        
             
-            println("object \(object)")
-            
-            self.movies = object["movies"] as NSDictionary
+            self.movies = object["movies"] as [NSDictionary]
+            self.tableView.reloadData()
             
         }
 
@@ -37,7 +38,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return movies.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -45,9 +46,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         var cell = tableView.dequeueReusableCellWithIdentifier("Movie Cell") as MovieCell
       
+        var movie = movies[indexPath.row]
         
-        cell.movieTitleLabel.text = "Title"
-        cell.synopsisLabel.text = "Synopsis"
+        cell.movieTitleLabel.text = movie["title"] as?  String
+        cell.synopsisLabel.text = movie["synopsis"] as? String
         
         
   //      cell.textLabel!.text = "Hello I'm at row: \(indexPath.row), section  \(indexPath.section)"
@@ -62,7 +64,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
+    
     */
 
 }
