@@ -22,15 +22,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
 
         var url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=et5rj7cxytpx9e5faamzxmmv&limit=20&country=us"
+        
         var request = NSURLRequest(URL: NSURL(string: url))
+        
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             var object = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSDictionary
     
             self.movies = object["movies"] as [NSDictionary]
             //println("object: \(object)")
             self.tableView.reloadData()
-            println(self.movies.count);
-            
+            println("\(self.movies.count)")
         }
     }
     
@@ -48,7 +49,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         println("I'm at row: \(indexPath.row), section  \(indexPath.section)")
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("Movie Cell") as MovieCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("MovieCell") as MovieCell
       
         var movie = movies[indexPath.row]
         

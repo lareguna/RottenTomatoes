@@ -12,9 +12,9 @@ class MovieCell: UITableViewCell {
 
     
     @IBOutlet weak var movieTitleLabel: UILabel!
+
     
     @IBOutlet weak var synopsisLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
