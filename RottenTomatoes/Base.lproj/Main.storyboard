@@ -45,6 +45,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="movieTitleLabel" destination="7m1-1h-wl4" id="rfE-UW-z5X"/>
+                                            <outlet property="posterView" destination="BLA-Qe-YHW" id="isM-CC-uQj"/>
                                             <outlet property="synopsisLabel" destination="Kuv-EG-Jeu" id="qzP-LD-ffr"/>
                                         </connections>
                                     </tableViewCell>
