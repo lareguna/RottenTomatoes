@@ -16,7 +16,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // This causes you to register for all the tableView events.
         tableView.delegate = self
+        
         tableView.dataSource = self
 
         var url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=et5rj7cxytpx9e5faamzxmmv&limit=20&country=us"
@@ -25,11 +27,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             var object = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSDictionary
     
             self.movies = object["movies"] as [NSDictionary]
-            println("object: \(object)")
+            //println("object: \(object)")
+            self.tableView.reloadData()
+            println(self.movies.count);
             
         }
-            self.tableView.reloadData()
-            
     }
     
 
@@ -50,8 +52,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
       
         var movie = movies[indexPath.row]
         
+        
         cell.movieTitleLabel.text = movie["title"] as?  String
         cell.synopsisLabel.text = movie["synopsis"] as? String
+        
         
         
   //      cell.textLabel!.text = "Hello I'm at row: \(indexPath.row), section  \(indexPath.section)"
