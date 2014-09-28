@@ -29,13 +29,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             var object = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSDictionary
     
             self.movies = object["movies"] as [NSDictionary]
-            //println("object: \(object)")
-            self.tableView.reloadData()
             println("\(self.movies.count)")
+            println("object: \(object)")
+            self.tableView.reloadData()
+            
         }
     }
-    
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -79,5 +78,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // Pass the selected object to the new view controller.
     
     */
+      override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+            if segue.identifier == "Detail Segue" {
+                var row = self.tableView.indexPathForSelectedRow()?.row
+                var detail = segue.destinationViewController as MovieDetailViewController
+                detail.index = row
+                println("Seque to \(detail.title), setting index to \(row)")
+            }
+        }
 
 }
