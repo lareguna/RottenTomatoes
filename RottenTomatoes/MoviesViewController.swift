@@ -17,11 +17,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     var refreshControl:UIRefreshControl!
 
     
+    
     func getData() {
         NSLog("getData called")
         var apiKey = "et5rj7cxytpx9e5faamzxmmv"
         var url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey="+apiKey+"&limit=20&country=us"
         var request = NSURLRequest(URL: NSURL(string: url))
+      
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue() ) {
             (response: NSURLResponse!, urlData: NSData!, error: NSError!) -> Void in
@@ -72,7 +74,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             self.refreshControl.tintColor = UIColor.whiteColor()
             self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh")
             self.refreshControl.addTarget(self, action: "getData", forControlEvents: UIControlEvents.ValueChanged)
-            self.tableView.addSubview(self.refreshControl)
+            //self.tableView.addSubview(self.refreshControl)
+            self.tableView.insertSubview(self.refreshControl, atIndex: 0)
             
             // get data from network, has to come after refreshControl is setup
             self.getData()
@@ -127,11 +130,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
       override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
             if segue.identifier == "MovieDetailSegue" {
                 var selectedRow:Int = self.tableView.indexPathForSelectedRow()?.row as Int!
+                println(selectedRow)
                 //let viewController = segue.destinationViewController as MovieDetailViewController
                 var detail = segue.destinationViewController as MovieDetailViewController
                 detail.index = selectedRow
                 detail.movieID = self.movieID
-                println("Seque to \(detail.index), setting index to \(selectedRow)")
+                //println("Seque to \(detail.index), setting index to \(selectedRow)")
             }
         }
 

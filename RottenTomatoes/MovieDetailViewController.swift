@@ -26,6 +26,7 @@ class MovieDetailViewController: UIViewController {
     
     @IBOutlet weak var movieCast: UILabel!
     
+   // var selectedMovie:Movie = Movie(dict: [:])
     var movieID: String? = ""
     var index : Int? = 0  // the index into movies; always set by something else
     
