@@ -17,7 +17,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="135" id="P91-vV-OQZ" customClass="MovieCell" customModule="RottenTomatoes" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="135" id="P91-vV-OQZ" customClass="MovieCell" customModule="RottenTomatoes" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P91-vV-OQZ" id="sIY-Hv-GGk">
@@ -47,7 +47,7 @@
                                             <outlet property="movieTitleLabel" destination="7m1-1h-wl4" id="rfE-UW-z5X"/>
                                             <outlet property="posterView" destination="BLA-Qe-YHW" id="isM-CC-uQj"/>
                                             <outlet property="synopsisLabel" destination="Kuv-EG-Jeu" id="qzP-LD-ffr"/>
-                                            <segue destination="Hkv-hq-zGl" kind="modal" id="R38-Jf-LIy"/>
+                                            <segue destination="Hkv-hq-zGl" kind="push" identifier="MovieDetailSegue" id="Tye-AM-vKK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -62,12 +62,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="585" y="320"/>
+            <point key="canvasLocation" x="573" y="320"/>
         </scene>
         <!--Movie Detail View Controller-->
         <scene sceneID="ytI-HV-JvZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TzQ-jQ-5Rb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Hkv-hq-zGl" customClass="MovieDetailViewController" customModule="RottenTomatoes" customModuleProvider="target" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="enz-3x-wHt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -114,6 +113,7 @@
                             </label>
                         </subviews>
                     </scrollView>
+                    <navigationItem key="navigationItem" id="gmO-f7-oGT"/>
                     <connections>
                         <outlet property="audienceScore" destination="ADI-9h-BnW" id="99p-cf-SGu"/>
                         <outlet property="criticsRating" destination="xbB-dg-NtS" id="uyV-if-178"/>
@@ -123,6 +123,7 @@
                         <outlet property="movieSynopsis" destination="ZrZ-o5-7q3" id="DbZ-Pm-GrC"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TzQ-jQ-5Rb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1010" y="320"/>
         </scene>
